@@ -1,8 +1,5 @@
 package calc;
 
-/**
- * Created by gorchakov on 10.10.2018.
- */
 public class Calculator {
 
     public double division(String a, String b) {

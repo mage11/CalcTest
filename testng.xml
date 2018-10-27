@@ -4,6 +4,7 @@
     <test name="Sum">
         <classes>
             <class name="com.stc.tests.SumTest" />
+            <class name="com.stc.tests.MultiplyTest" />
         </classes>
     </test>
 
