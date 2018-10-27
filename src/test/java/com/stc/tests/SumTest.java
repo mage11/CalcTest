@@ -29,7 +29,7 @@ public class SumTest {
     @DataProvider(name = "userDataInt")
     public Object[][] createDataInt() {
         Double max = Double.MAX_VALUE;
-        Double min = -Double.MAX_VALUE;
+        Double min = Double.MIN_VALUE;
         return new Object[][] {
                 {"1", "2", 3.0},
                 {"-1", "-2", -3.0},
@@ -37,7 +37,7 @@ public class SumTest {
                 {"1", "-7", -6.0},
                 {"0", "0", 0.0},
                 {max.toString(), max.toString(), Double.POSITIVE_INFINITY},
-                {min.toString(), min.toString(), -Double.POSITIVE_INFINITY},
+                {min.toString(), min.toString(), Double.NEGATIVE_INFINITY},
         };
     }
 
@@ -48,8 +48,7 @@ public class SumTest {
                 {"23.55", "5.03", 28.58, DELTA},
                 {"-6.01", "-4.1", -10.11, DELTA},
                 {"5.01", "-5.01", 0.0, DELTA},
-                {"1.23", "0", 1.23, DELTA},
-                {"1.22424584847589345", "1.22424584847589345", 2.4484916969517869 , DELTA},
+                {"1.23", "0", 1.23, DELTA}
         };
     }
 

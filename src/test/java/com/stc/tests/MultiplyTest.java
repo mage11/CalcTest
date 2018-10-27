@@ -27,7 +27,7 @@ public class MultiplyTest {
     @DataProvider(name = "userDataInt")
     public Object[][] createData() {
         Double max = Double.MAX_VALUE;
-        Double min = -Double.MAX_VALUE;
+        Double min = Double.MIN_VALUE;
         return new Object[][] {
                 {"1", "2", 2.0},
                 {"0", "3", 0.0},
@@ -35,7 +35,7 @@ public class MultiplyTest {
                 {"-6", "-7", 42.0},
                 {"0", "0", 0.0},
                 {max.toString(), "2", Double.POSITIVE_INFINITY},
-                {min.toString(), "2", -Double.POSITIVE_INFINITY}
+                {min.toString(), "2", Double.NEGATIVE_INFINITY}
         };
     }
 
@@ -45,6 +45,7 @@ public class MultiplyTest {
         return new Object[][] {
                 {"1.23", "3.33", 4.0959, DELTA},
                 {"0", "3.56", 0.0, DELTA},
+                {"5", "4.87", 24.35},
                 {"-4.423", "5.1", -22.5573, DELTA},
                 {"-6.23", "-7.66", 47.7218, DELTA},
         };
