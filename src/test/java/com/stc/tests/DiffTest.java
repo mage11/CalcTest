@@ -2,25 +2,30 @@ package com.stc.tests;
 
 import calc.Calculator;
 import org.testng.Assert;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 public class DiffTest {
-    @Test(dataProvider = "userDataInt")
+    Calculator calc;
+
+    @BeforeClass
+    void setUp(){
+        calc = new Calculator();
+    }
+
+    @Test(dependsOnGroups = "smoke",dataProvider = "userDataInt")
     public void naturalNumbers(String a, String b, double d){
-        Calculator calc = new Calculator();
         Assert.assertEquals(calc.difference(a, b), d);
     }
 
-    @Test(dataProvider = "userDataF")
+    @Test(dependsOnGroups = "smoke",dataProvider = "userDataF")
     public void fractionalNumbers(String a, String b, double d, double delta){
-        Calculator calc = new Calculator();
         Assert.assertEquals(calc.difference(a, b), d, delta);
     }
 
-    @Test(dataProvider = "userInvalidData", expectedExceptions = NumberFormatException.class)
+    @Test(dependsOnGroups = "smoke",dataProvider = "userInvalidData", expectedExceptions = NumberFormatException.class)
     public void invalidValues(String a, String b, double d) {
-        Calculator calc = new Calculator();
         Assert.assertEquals(calc.difference(a, b), d);
     }
 

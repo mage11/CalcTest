@@ -3,6 +3,7 @@
 
     <test name="All_Test">
         <classes>
+            <class name="com.stc.tests.SmokeTest" />
             <class name="com.stc.tests.SumTest" />
             <class name="com.stc.tests.MultiplyTest" />
             <class name="com.stc.tests.DivTest" />

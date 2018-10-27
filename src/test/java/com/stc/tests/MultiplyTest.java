@@ -2,25 +2,30 @@ package com.stc.tests;
 
 import calc.Calculator;
 import org.testng.Assert;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 public class MultiplyTest {
+    Calculator calc;
+
+    @BeforeClass
+    void setUp(){
+        calc = new Calculator();
+    }
+
     @Test(dataProvider = "userDataInt")
     public void naturalNumbers(String a, String b, double d) {
-        Calculator calc = new Calculator();
         Assert.assertEquals(calc.multiplication(a, b), d);
     }
 
     @Test(dataProvider = "userDataF")
     public void fractionalNumbers(String a, String b, double d, double delta) {
-        Calculator calc = new Calculator();
         Assert.assertEquals(calc.multiplication(a, b), d, delta);
     }
 
     @Test(dataProvider = "userInvalidData", expectedExceptions = NumberFormatException.class)
     public void invalidValues(String a, String b, double d) {
-        Calculator calc = new Calculator();
         Assert.assertEquals(calc.multiplication(a, b), d);
     }
 
