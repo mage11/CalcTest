@@ -1,10 +1,12 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 <suite name="Calc Test">
 
-    <test name="Sum">
+    <test name="All_Test">
         <classes>
             <class name="com.stc.tests.SumTest" />
             <class name="com.stc.tests.MultiplyTest" />
+            <class name="com.stc.tests.DivTest" />
+            <class name="com.stc.tests.DiffTest" />
         </classes>
     </test>
 

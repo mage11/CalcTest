@@ -17,9 +17,15 @@ public class DivTest {
         Calculator calc = new Calculator();
         Assert.assertEquals(calc.division(a,b), d, delta);
     }
-    
+
     @Test(dataProvider = "userDataNull")
     public void divNullNull(String a, String b, double d){
+        Calculator calc = new Calculator();
+        Assert.assertEquals(calc.division(a, b), d);
+    }
+
+    @Test(dataProvider = "userInvalidData", expectedExceptions = NumberFormatException.class)
+    public void invalidValues(String a, String b, double d) {
         Calculator calc = new Calculator();
         Assert.assertEquals(calc.division(a, b), d);
     }
@@ -28,7 +34,7 @@ public class DivTest {
     @DataProvider(name = "userDataInt")
     public Object[][] createData() {
         Double max = Double.MAX_VALUE;
-        Double min = Double.MIN_VALUE;
+        Double min = -Double.MAX_VALUE;
         return new Object[][] {
                 {"2", "1", 2.0},
                 {"0", "3", 0.0},
@@ -42,8 +48,8 @@ public class DivTest {
     public Object[][] createDataF() {
         double DELTA = 0.00000000000001;
         return new Object[][] {
-                {"23.55", "5.03", 4.88071570577, DELTA},
-                {"-6.01", "-4.1", 1.46585365854, DELTA},
+                {"23.55", "5.03", 4.681908548707753, DELTA},
+                {"-6.01", "-4.1", 1.4658536585365853, DELTA},
                 {"5.01", "-5.01", -1.0, DELTA},
                 {"0", "0.55", 0.0, DELTA}
         };
@@ -54,6 +60,16 @@ public class DivTest {
         return new Object[][] {
                 {"1", "0", Double.POSITIVE_INFINITY},
                 {"0", "0", Double.NaN}
+        };
+    }
+
+    @DataProvider(name = "userInvalidData")
+    public Object[][] createInvalidData() {
+        return new Object[][] {
+                {"a", "b", 0},
+                {"4", "c", 0},
+                {".", "?", 0},
+                {"0EFBC3C515", "0EFBC3C515", 0}
         };
     }
 }

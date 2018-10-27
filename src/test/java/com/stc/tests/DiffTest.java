@@ -5,23 +5,23 @@ import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-public class MultiplyTest {
+public class DiffTest {
     @Test(dataProvider = "userDataInt")
-    public void naturalNumbers(String a, String b, double d) {
+    public void naturalNumbers(String a, String b, double d){
         Calculator calc = new Calculator();
-        Assert.assertEquals(calc.multiplication(a, b), d);
+        Assert.assertEquals(calc.difference(a, b), d);
     }
 
     @Test(dataProvider = "userDataF")
-    public void fractionalNumbers(String a, String b, double d, double delta) {
+    public void fractionalNumbers(String a, String b, double d, double delta){
         Calculator calc = new Calculator();
-        Assert.assertEquals(calc.multiplication(a, b), d, delta);
+        Assert.assertEquals(calc.difference(a, b), d, delta);
     }
 
     @Test(dataProvider = "userInvalidData", expectedExceptions = NumberFormatException.class)
     public void invalidValues(String a, String b, double d) {
         Calculator calc = new Calculator();
-        Assert.assertEquals(calc.multiplication(a, b), d);
+        Assert.assertEquals(calc.difference(a, b), d);
     }
 
     @DataProvider(name = "userDataInt")
@@ -29,13 +29,11 @@ public class MultiplyTest {
         Double max = Double.MAX_VALUE;
         Double min = -Double.MAX_VALUE;
         return new Object[][] {
-                {"1", "2", 2.0},
-                {"0", "3", 0.0},
-                {"-4", "5", -20.0},
-                {"-6", "-7", 42.0},
-                {"0", "0", 0.0},
-                {max.toString(), "2", Double.POSITIVE_INFINITY},
-                {min.toString(), "2", Double.NEGATIVE_INFINITY}
+                {"2", "1", 1.0},
+                {"0", "3", -3.0},
+                {"-4", "2", -6.0},
+                {"-7", "-3", -4.0},
+                {max.toString(), min.toString(), Double.POSITIVE_INFINITY},
         };
     }
 
@@ -43,11 +41,11 @@ public class MultiplyTest {
     public Object[][] createDataF() {
         double DELTA = 0.00000000000001;
         return new Object[][] {
-                {"1.23", "3.33", 4.0959, DELTA},
-                {"0", "3.56", 0.0, DELTA},
-                {"5", "4.87", 24.35, DELTA},
-                {"-4.423", "5.1", -22.5573, DELTA},
-                {"-6.23", "-7.66", 47.7218, DELTA},
+                {"5.23", "3.23", 2.0, DELTA},
+                {"0", "3.56", -3.56, DELTA},
+                {"5", "4.87", 0.13, DELTA},
+                {"-4.423", "5.1", -9.523, DELTA},
+                {"-6.23", "-7.66", 1.43, DELTA}
         };
     }
 
@@ -60,5 +58,4 @@ public class MultiplyTest {
                 {"0EFBC3C515", "0EFBC3C515", 0}
         };
     }
-
 }

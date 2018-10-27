@@ -29,7 +29,7 @@ public class SumTest {
     @DataProvider(name = "userDataInt")
     public Object[][] createDataInt() {
         Double max = Double.MAX_VALUE;
-        Double min = Double.MIN_VALUE;
+        Double min = -Double.MAX_VALUE;
         return new Object[][] {
                 {"1", "2", 3.0},
                 {"-1", "-2", -3.0},
