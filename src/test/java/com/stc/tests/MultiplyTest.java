@@ -6,6 +6,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+@Test(dependsOnGroups = "smoke-mult", groups = {"mult-group"})
 public class MultiplyTest {
     Calculator calc;
 
@@ -62,6 +63,11 @@ public class MultiplyTest {
                 {"a", "b", 0},
                 {"4", "c", 0},
                 {".", "?", 0},
+                {",", "@", 0},
+                {"4,5", "6", 0},
+                {"\\","!", 0 },
+                {" ", "/", 0},
+                {"", "", 0},
                 {"0EFBC3C515", "0EFBC3C515", 0}
         };
     }

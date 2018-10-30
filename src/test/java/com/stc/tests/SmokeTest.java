@@ -12,31 +12,31 @@ public class SmokeTest {
         Assert.assertNotNull(calc);
     }
 
-    @Test(dependsOnMethods = "smokeNull", groups = {"smoke"})
+    @Test(dependsOnMethods = "smokeNull", groups = {"smoke", "smoke-sum"})
     public void smokeSum(){
         Calculator calc = new Calculator();
         Assert.assertEquals(calc.sum("1", "2"), 3.0);
     }
 
-    @Test(dependsOnMethods = "smokeNull", groups = {"smoke"})
+    @Test(dependsOnMethods = "smokeNull", groups = {"smoke", "smoke-mult"})
     public void smokeMul(){
         Calculator calc = new Calculator();
         Assert.assertEquals(calc.multiplication("3", "2"), 6.0);
     }
 
-    @Test(dependsOnMethods = "smokeNull",groups = {"smoke"})
+    @Test(dependsOnMethods = "smokeNull",groups = {"smoke", "smoke-div"})
     public void smokeDiv(){
         Calculator calc = new Calculator();
         Assert.assertEquals(calc.division("4", "2"), 2.0);
     }
 
-    @Test(dependsOnMethods = "smokeNull",groups = {"smoke"})
+    @Test(dependsOnMethods = "smokeNull",groups = {"smoke", "smoke-diff"})
     public void smokeDiff(){
         Calculator calc = new Calculator();
         Assert.assertEquals(calc.difference("2", "1"), 1.0);
     }
 
-    @Test(dependsOnMethods = "smokeNull",groups = {"smoke"})
+    @Test(dependsOnMethods = "smokeNull",groups = {"smoke", "smoke-div"})
     public void divNull(){
         Calculator calc = new Calculator();
         Assert.assertEquals(calc.division("1", "0"), Double.POSITIVE_INFINITY);

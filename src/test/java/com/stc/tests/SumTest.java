@@ -6,7 +6,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-
+@Test(dependsOnGroups = "smoke-sum", groups = {"sum-group"})
 public class SumTest {
     Calculator calc;
 
@@ -15,17 +15,17 @@ public class SumTest {
         calc = new Calculator();
     }
 
-    @Test(dependsOnGroups = "smoke",dataProvider = "userDataInt")
+    @Test(dataProvider = "userDataInt")
     public void naturalNumbers(String a, String b, Double d) {
         Assert.assertEquals(calc.sum(a,b), d);
     }
 
-    @Test(dependsOnGroups = "smoke",dataProvider = "userDataFraction")
+    @Test(dataProvider = "userDataFraction")
     public void fractionalNumbers(String a, String b, Double d, Double delta) {
         Assert.assertEquals(calc.sum(a,b), d, delta);
     }
 
-    @Test(dependsOnGroups = "smoke",dataProvider = "userInvalidData", expectedExceptions = NumberFormatException.class )
+    @Test(dataProvider = "userInvalidData", expectedExceptions = NumberFormatException.class )
     public void invalidValues(String a, String b, double d) {
         Assert.assertEquals(calc.sum(a,b), d);
     }
@@ -62,6 +62,11 @@ public class SumTest {
                 {"a", "b", 0},
                 {"4", "c", 0},
                 {".", "?", 0},
+                {",", "@", 0},
+                {"4,5", "6", 0},
+                {"\\","!", 0 },
+                {" ", "/", 0},
+                {"", "", 0},
                 {"0EFBC3C515", "0EFBC3C515", 0}
         };
     }

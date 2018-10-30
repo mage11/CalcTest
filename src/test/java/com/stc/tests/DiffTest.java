@@ -6,6 +6,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+@Test(dependsOnGroups = "smoke-diff", groups = {"diff-group"})
 public class DiffTest {
     Calculator calc;
 
@@ -14,17 +15,17 @@ public class DiffTest {
         calc = new Calculator();
     }
 
-    @Test(dependsOnGroups = "smoke",dataProvider = "userDataInt")
+    @Test(dataProvider = "userDataInt")
     public void naturalNumbers(String a, String b, double d){
         Assert.assertEquals(calc.difference(a, b), d);
     }
 
-    @Test(dependsOnGroups = "smoke",dataProvider = "userDataF")
+    @Test(dataProvider = "userDataF")
     public void fractionalNumbers(String a, String b, double d, double delta){
         Assert.assertEquals(calc.difference(a, b), d, delta);
     }
 
-    @Test(dependsOnGroups = "smoke",dataProvider = "userInvalidData", expectedExceptions = NumberFormatException.class)
+    @Test(dataProvider = "userInvalidData", expectedExceptions = NumberFormatException.class)
     public void invalidValues(String a, String b, double d) {
         Assert.assertEquals(calc.difference(a, b), d);
     }
@@ -60,6 +61,11 @@ public class DiffTest {
                 {"a", "b", 0},
                 {"4", "c", 0},
                 {".", "?", 0},
+                {",", "@", 0},
+                {"4,5", "6", 0},
+                {"\\","!", 0 },
+                {" ", "/", 0},
+                {"", "", 0},
                 {"0EFBC3C515", "0EFBC3C515", 0}
         };
     }

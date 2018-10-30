@@ -2,13 +2,18 @@
 <suite name="Calc Test">
 
     <test name="All_Test">
-        <classes>
-            <class name="com.stc.tests.SmokeTest" />
-            <class name="com.stc.tests.SumTest" />
-            <class name="com.stc.tests.MultiplyTest" />
-            <class name="com.stc.tests.DivTest" />
-            <class name="com.stc.tests.DiffTest" />
-        </classes>
+        <groups>
+            <run>
+                <include name="smoke" />
+                <include name="div-group" />
+                <include name="diff-group" />
+                <include name="sum-group" />
+                <include name="mult-group" />
+            </run>
+        </groups>
+        <packages>
+            <package name="com.stc.tests.*" />
+        </packages>
     </test>
 
 </suite>

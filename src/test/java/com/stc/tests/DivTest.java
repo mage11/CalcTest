@@ -6,6 +6,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+@Test(dependsOnGroups = "smoke-div", groups = {"div-group"})
 public class DivTest {
     Calculator calc;
 
@@ -14,22 +15,22 @@ public class DivTest {
         calc = new Calculator();
     }
 
-    @Test(dependsOnGroups = "smoke", dataProvider = "userDataInt")
+    @Test(dataProvider = "userDataInt")
     public void naturalNumbers(String a, String b, double d){
         Assert.assertEquals(calc.division(a, b), d);
     }
 
-    @Test (dependsOnGroups = "smoke",dataProvider = "userDataFraction")
+    @Test (dataProvider = "userDataFraction")
     public void fractionalNumbers(String a, String b, Double d, Double delta) {
         Assert.assertEquals(calc.division(a,b), d, delta);
     }
 
-    @Test(dependsOnGroups = "smoke", dataProvider = "userDataNull")
+    @Test(dataProvider = "userDataNull")
     public void divNullNull(String a, String b, double d){
         Assert.assertEquals(calc.division(a, b), d);
     }
 
-    @Test(dependsOnGroups = "smoke", dataProvider = "userInvalidData", expectedExceptions = NumberFormatException.class)
+    @Test(dataProvider = "userInvalidData", expectedExceptions = NumberFormatException.class)
     public void invalidValues(String a, String b, double d) {
         Assert.assertEquals(calc.division(a, b), d);
     }
@@ -44,6 +45,7 @@ public class DivTest {
                 {"0", "3", 0.0},
                 {"-4", "2", -2.0},
                 {"-6", "-3", 2.0},
+                {" 4", " 5 ", 0.8},
                 {max.toString(), min.toString(), -1.0},
         };
     }
@@ -73,6 +75,11 @@ public class DivTest {
                 {"a", "b", 0},
                 {"4", "c", 0},
                 {".", "?", 0},
+                {",", "@", 0},
+                {"4,5", "6", 0},
+                {"\\","!", 0 },
+                {" ", "/", 0},
+                {"", "", 0},
                 {"0EFBC3C515", "0EFBC3C515", 0}
         };
     }
